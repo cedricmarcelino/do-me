@@ -1,0 +1,32 @@
+<div class="text-xl font-semibold flex justify-between shadow-md bg-white p-4 px-6 sticky top-0">
+
+  <%=@category.name%>
+  <div>
+    <a class="fas fa-info-circle" href="<%= edit_user_category_path(id: @category.id, user_id: current_user.id) %>"></a>
+  </div>
+</div>
+
+<div class="flex flex-col grow p-4">
+    <div class="categories-container flex flex-wrap justify-around">
+      <%# Rendering of tasks %>
+    </div>
+</div>
+
+<div class="bottom-0 sticky w-full">
+  <%= form_with scope: :task, class: "flex justify-around", url: "/users/#{@user.id}/categories/#{@category.id}/tasks" do |f| %>
+    <%= f.text_field :name, class: "border-0" %>
+    <%= button_tag( :class => "text-2xl") do %>
+      <i class="fas fa-plus-circle"></i>
+    <% end %>
+  <% end %>
+  <div class="flex justify-around text-center bg-white shadow-inner p-4">
+    <a class="flex flex-col text-sky-500" href=<%= user_categories_path(user_id: current_user.id)%>>
+        <i class="fas fa-check-circle text-2xl"></i>
+        <span class="font-semibold">Tasks</span>
+    </a>
+    <a class="flex flex-col" href=<%= user_path(id: current_user.id)%>>
+        <i class="fas fa-cog text-2xl"></i>
+        <span class="font-semibold">Settings</span>
+    </a>
+  </div>
+</div>

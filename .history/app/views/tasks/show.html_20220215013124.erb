@@ -1,0 +1,22 @@
+<%= render partial: "shared/header", locals: {title: "Task Details"} %>
+<div class="flex flex-col grow p-4">
+  <%= form_with scope: :task, method: 'put', url: "/users/#{current_user.id}/categories/#{@category.id}/tasks/#{@task.id}" do |f| %>
+    
+        <div class="field">
+          <%= f.label "Task" , class: "font-semibold text-lg"%><br />
+          <%= f.text_field :name, value: @task.name, class: "bg-slate-50 border border-dashed rounded-lg border-sky-500 w-full p-0" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description , class: "font-semibold text-lg"%><br />
+          <%= f.text_area :description, value: @task.description, class: "bg-slate-50 border-0 w-full p-0" %>
+        </div>
+
+      <div class="text-center">
+        <%= f.submit "Save Changes", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto mt-2" %>
+      </div>
+
+      <%= link_to "Discard Changes", user_category_task_path(user_id: current_user.id, category_id: @category.id, id: @task.id), class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center mt-2" %>
+  <% end %>
+</div>
+<%= render partial: "shared/footer", locals: {tab: "tasks"} %>

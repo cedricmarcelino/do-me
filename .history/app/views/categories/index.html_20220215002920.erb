@@ -1,0 +1,16 @@
+<%= render partial: "shared/header", locals: {title: "Categories"} %>
+<div class="flex flex-col grow p-4">
+    <div class="categories-container flex flex-wrap justify-around">
+        <% @categories.each do |category|%>
+            <a class="max-w-sm rounded overflow-hidden shadow-lg w-5/12 h-32 flex flex-col text-center justify-center font-semibold bg-white mb-2" href="<%=user_category_tasks_path(user_id: current_user.id, category_id: category.id)%>">
+                <span><%=category.name%></span>
+            </a>
+        <%end%>
+
+        <a class="max-w-sm rounded overflow-hidden shadow-lg w-5/12 h-32 flex flex-col text-center justify-center bg-white" href=<%= new_user_category_path(user_id: current_user.id) %>>
+            <i class="fas fa-plus-circle text-2xl text-sky-500"></i>
+        </a>
+
+    </div>
+</div>
+<%= render partial: "shared/footer", locals: {tab: "tasks"} %>
