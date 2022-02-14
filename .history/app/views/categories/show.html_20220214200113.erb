@@ -1,0 +1,13 @@
+<div class="text-xl font-semibold flex shadow-md bg-white p-4 sticky top-0">
+  <%=@category.name%>
+  <div>
+    <a class="fas fa-info-circle"></a>
+    <a class="fas fa-edit"></a>
+  <div>
+</div>
+<div class="flex flex-col grow p-4">
+    <div class="categories-container flex flex-wrap justify-around">
+    
+    </div>
+</div>
+<%= render partial: "shared/footer", locals: {tab: "tasks"} %>

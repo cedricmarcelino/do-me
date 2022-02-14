@@ -1,5 +1,5 @@
 <div class="flex justify-around text-center bg-white shadow-inner p-4 bottom-0 sticky w-full">
-    <a class="flex flex-col <%= tab=="tasks" ? "text-sky-500" : ""%>" href=<%= user_categories_path(user_id: current_user.id)%>>
+    <a class="flex flex-col <%= tab=="tasks" ? "text-sky-500" : ""%>" <%= user_categories_path(user_id: current_user.id)%>>
         <i class="fas fa-check-circle text-2xl"></i>
         <span class="font-semibold">Tasks</span>
     </a>

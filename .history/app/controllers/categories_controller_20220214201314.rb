@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, :authenticate_user!, only: [ :show, :edit, :update, :destroy]
-  before_action :set_user,  :authenticate_user!, only: [:index, :new, :show, :edit]
+  before_action :set_user,  :authenticate_user!, only: [:index, :new, :show]
   # before_action :user_authorized?, only: [:index]
 
   # GET /categories

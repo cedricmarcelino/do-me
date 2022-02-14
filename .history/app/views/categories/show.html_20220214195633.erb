@@ -1,7 +1,7 @@
-<%= render partial: "shared/header", locals: {title: "Category Details"} %>
+<%= render partial: "shared/header", locals: {title: "#{@category.name}"+<i class="fas fa-info-circle"></i>} %>
 <div class="flex flex-col grow p-4">
     <div class="categories-container flex flex-wrap justify-around">
-       
+    
     </div>
 </div>
 <%= render partial: "shared/footer", locals: {tab: "tasks"} %>

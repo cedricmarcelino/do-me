@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, :authenticate_user!, only: [ :show, :edit, :update, :destroy]
-  before_action :set_user,  :authenticate_user!, only: [:index, :new, :show, :edit]
+  before_action :set_category, only: [ :show, :edit, :update, :destroy]
+  before_action :set_user, :authenticate_user!, only: [:index]
   # before_action :user_authorized?, only: [:index]
 
   # GET /categories
@@ -15,43 +15,27 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
-    if user_authorized? && category_under_user?
-      render :show
-    else
-      redirect_to user_categories_path(current_user.id)
-    end
   end
 
   # GET /categories/new
   def new
-    if user_authorized?
-      render :new
-    else
-      redirect_to new_user_category_path(current_user.id)
-    end
+    @category = Category.new
   end
 
   # GET /categories/1/edit
   def edit
-    if user_authorized? && category_under_user?
-      render :edit
-    else
-      redirect_to user_categories_path(current_user.id)
-    end
+    
   end
 
   # POST /categories
   def create
     @category = Category.new(category_params)
-    @category.user_id = current_user.id
 
     if @category.save
-      redirect_to user_categories_path(user_id: current_user.id)
+      redirect_to @category, notice: 'Category was successfully created.'
     else
       render :new
     end
-
-
   end
 
   # PATCH/PUT /categories/1
@@ -71,14 +55,6 @@ class CategoriesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-
-    def category_under_user?
-      if @category.user_id == current_user.id
-        true
-      else
-        false
-      end
-    end
     
     def set_user
       @user = User.find(params[:user_id])

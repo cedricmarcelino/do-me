@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, :authenticate_user!, only: [ :show, :edit, :update, :destroy]
-  before_action :set_user,  :authenticate_user!, only: [:index, :new, :show, :edit]
+  before_action :set_user,  :authenticate_user!, only: [:index, :new, :show]
   # before_action :user_authorized?, only: [:index]
 
   # GET /categories
@@ -33,11 +33,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
-    if user_authorized? && category_under_user?
-      render :edit
-    else
-      redirect_to user_categories_path(current_user.id)
-    end
+
   end
 
   # POST /categories

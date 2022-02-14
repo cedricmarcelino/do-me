@@ -13,7 +13,7 @@
           <%= f.text_area :description,  class: "w-full"  %>
         </div>
         <div class="text-center">
-          <%= f.submit "Add Category", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto mt-2" %>
+          <%= f.submit "Save Changes", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto mt-2" %>
         </div>
         <%= link_to "Discard Changes", user_categories_path(user_id: current_user.id), class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center mt-2" %>
   <% end %>
