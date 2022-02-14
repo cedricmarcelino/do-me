@@ -1,10 +1,10 @@
 <div class="flex justify-around text-center bg-white shadow-inner p-4 bottom-0 sticky w-full">
-    <a class="flex flex-col <%= tab=="tasks" ? "text-sky-500" : ""%>">
+    <a class="flex flex-col">
         <i class="fas fa-check-circle text-2xl"></i>
         <span class="font-semibold">Tasks</span>
     </a>
-    <a class="flex flex-col <%= tab=="settings" ? "text-sky-500" : ""%>" href=<%= user_path(id: current_user.id)%>>
-        <i class="fas fa-cog text-2xl"></i>
+    <a class="flex flex-col" href=<%= user_path(id: current_user.id)%>>
+        <i class="fas fa-cog text-2xl <%= tab=="settings" ? "text-sky-500" : ""%>"></i>
         <span class="font-semibold">Settings</span>
     </a>
 </div>

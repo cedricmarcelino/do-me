@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, :authenticate_user!, only: [ :show, :edit, :update, :destroy]
+  before_action :user_authorized?, only: [:show]
 
   # GET /users/1
   def show
@@ -12,17 +13,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    if user_authorized?
-      render :edit
-    else
-      redirect_to edit_user_path(current_user.id)
-    end
+
   end
 
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit
     end

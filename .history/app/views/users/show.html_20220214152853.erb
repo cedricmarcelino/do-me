@@ -1,0 +1,7 @@
+<%= render partial: "shared/header", locals: {title: "Settings"} %>
+<div class="flex flex-col grow p-4">
+    <span>Account</span>
+    <span>Profile</span>
+    <%=link_to "LOGOUT", destroy_user_session_path, method: "delete"%>
+</div>
+<%= render partial: "shared/footer", locals: {tab: "settings"} %>

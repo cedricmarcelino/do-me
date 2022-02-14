@@ -1,0 +1,5 @@
+<%= render partial: "shared/header", locals: {title: "Settings"} %>
+<div>
+    <%=link_to "LOGOUT", destroy_user_session_path, method: "delete"%>
+</div>
+<%= render partial: "shared/footer", locals: {tab: "settings"} %>
