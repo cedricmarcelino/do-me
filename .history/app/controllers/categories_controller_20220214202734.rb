@@ -56,8 +56,7 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1
   def update
-
-    if user_authorized? && category_under_user? && @category.update(category_params)
+    if user_authorized? && category_under_user?
       render :show
     else
       render :edit

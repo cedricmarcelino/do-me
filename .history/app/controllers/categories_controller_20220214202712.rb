@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, :authenticate_user!, only: [ :show, :edit, :update, :destroy]
-  before_action :set_user,  :authenticate_user!, only: [:index, :new, :show, :edit, :update]
+  before_action :set_user,  :authenticate_user!, only: [:index, :new, :show, :edit]
   # before_action :user_authorized?, only: [:index]
 
   # GET /categories
@@ -56,8 +56,7 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1
   def update
-
-    if user_authorized? && category_under_user? && @category.update(category_params)
+    if user_authorized? && category_under_user?
       render :show
     else
       render :edit

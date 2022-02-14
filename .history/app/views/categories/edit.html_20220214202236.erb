@@ -1,6 +1,6 @@
 <%= render partial: "shared/header", locals: {title: "Category Details"} %>
 <div class="flex flex-col grow p-4">
-  <%= form_with scope: :category, method: 'put', url: "/users/#{current_user.id}/categories/#{@category.id}" do |f| %>
+  <%= form_with(model: @category, class: "") do |f| %>
     
         <div class="field">
           <%= f.label "Title" , class: "font-semibold text-lg"%><br />
