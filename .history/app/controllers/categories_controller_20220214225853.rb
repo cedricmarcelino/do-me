@@ -13,6 +13,15 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # GET /categories/1
+  def show
+    if user_authorized? && category_under_user?
+      render :show
+    else
+      redirect_to user_categories_path(current_user.id)
+    end
+  end
+
   # GET /categories/new
   def new
     if user_authorized?

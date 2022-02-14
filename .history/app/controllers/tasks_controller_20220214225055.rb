@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, :set_category, :set_user, :authenticate_user!, only: [:show, :edit, :update, :destroy]
-  before_action :set_category, :set_user, :authenticate_user!, only: [:index]
+  before_action :set_task, :set_category, :set_user only:, :authenticate_user! [:show, :edit, :update, :destroy]
+  before_action :set_category, :set_user only:, :authenticate_user! [:index]
 
   # GET /tasks
   def index
@@ -61,7 +61,7 @@ class TasksController < ApplicationController
     end
 
     def set_category
-      @category = Category.find(params[:category_id])
+      @category = Category.find(params[:id])
     end
 
     def user_authorized?

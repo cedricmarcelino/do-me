@@ -61,7 +61,7 @@ class TasksController < ApplicationController
     end
 
     def set_category
-      @category = Category.find(params[:category_id])
+      @category = Category.find(params[:id])
     end
 
     def user_authorized?

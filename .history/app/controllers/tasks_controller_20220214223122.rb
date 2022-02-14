@@ -1,14 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_task, :set_category, :set_user, :authenticate_user!, only: [:show, :edit, :update, :destroy]
-  before_action :set_category, :set_user, :authenticate_user!, only: [:index]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   def index
-    if user_authorized? && category_under_user?
-      render :index
-    else
-      redirect_to user_categories_path(current_user.id)
-    end
+    @tasks = Task.all
   end
 
   # GET /tasks/1
@@ -54,38 +49,6 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
-    end
-
-    def set_user
-      @user = User.find(params[:user_id])
-    end
-
-    def set_category
-      @category = Category.find(params[:category_id])
-    end
-
-    def user_authorized?
-      if current_user.id == @user.id
-        true
-      else
-        false
-      end
-    end
-
-    def category_under_user?
-      if @category.user_id == current_user.id
-        true
-      else
-        false
-      end
-    end
-
-    def task_under_user?
-      if @task.user_id == current_user.id
-        true
-      else
-        false
-      end
     end
 
     # Only allow a list of trusted parameters through.

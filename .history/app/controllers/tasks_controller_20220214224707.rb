@@ -1,14 +1,10 @@
 class TasksController < ApplicationController
-  before_action :set_task, :set_category, :set_user, :authenticate_user!, only: [:show, :edit, :update, :destroy]
-  before_action :set_category, :set_user, :authenticate_user!, only: [:index]
+  before_action :set_task, :set_category, :set_user only:, :authenticate_user! [:show, :edit, :update, :destroy]
+  before_action :set_category, :set_user only:, :authenticate_user! [:index]
 
   # GET /tasks
   def index
-    if user_authorized? && category_under_user?
-      render :index
-    else
-      redirect_to user_categories_path(current_user.id)
-    end
+    @tasks = Task.all
   end
 
   # GET /tasks/1
@@ -61,7 +57,7 @@ class TasksController < ApplicationController
     end
 
     def set_category
-      @category = Category.find(params[:category_id])
+      @category = Category.find(params[:id])
     end
 
     def user_authorized?

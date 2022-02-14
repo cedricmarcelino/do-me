@@ -16,7 +16,7 @@
         <%= f.submit "Save Changes", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto mt-2" %>
       </div>
 
-      <%= link_to "Discard Changes", user_category_tasks_path(user_id: current_user.id, category_id: @category.id), class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center mt-2" %>
+      <%= link_to "Discard Changes", user_category_tasks_path(user_id: current_user.id, category_id: category.id), class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center mt-2" %>
   <% end %>
 </div>
 <%= render partial: "shared/footer", locals: {tab: "tasks"} %>
