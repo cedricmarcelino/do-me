@@ -1,0 +1,6 @@
+USER INFORMATION<br>
+<%=link_to "LOGOUT", destroy_user_session_path, method: "delete"%>
+<br>
+<%= @user.email%>
+
+<%= render partial: "shared/dashboard", locals: {zone: "Show Users"} %>
