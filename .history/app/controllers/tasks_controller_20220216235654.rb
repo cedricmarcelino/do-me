@@ -40,7 +40,8 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to category_tasks_path(category_id: @task.category_id)
+    byebug
+    redirect_to category_tasks_path(category_id: @task.id)
   end
 
   private

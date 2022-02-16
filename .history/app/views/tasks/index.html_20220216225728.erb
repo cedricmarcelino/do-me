@@ -11,7 +11,7 @@
   <% @tasks.each do |task|%>
     <div class="flex justify-between border-b border-gray-300 border-solid mb-1 pb-1 text-lg">
       <div>
-        <a class="<%= task.is_done ? "line-through" : ""%>" href="<%= category_task_path(category_id: @category.id, id: task.id) %>"><%= task.name %></a>
+        <span class="<%= task.is_done ? "line-through" : ""%>"><%= task.name %></span>
       </div>
       <div>
         <a class="fas fa-edit" href="<%= category_task_path(category_id: @category.id, id: task.id) %>"></a>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="bottom-0 sticky w-full">
-  <%= form_with scope: :task, class: "flex justify-around shadow-inner p-2", url: "/categories/#{@category.id}/tasks" do |f| %>
+  <%= form_with scope: :task, class: "flex justify-around shadow-inner p-2", url: "/users/#{@user.id}/categories/#{@category.id}/tasks" do |f| %>
     <%= f.text_field :name, class: "border-0 bg-slate-50 border-b border-gray-400 border-solid focus:ring-0", placeholder: "I want to..."%>
     <%= button_tag( :class => "text-2xl") do %>
       <i class="fas fa-plus-circle"></i>

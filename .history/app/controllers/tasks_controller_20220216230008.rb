@@ -14,24 +14,26 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
-    if @user.categories.exists?(id: @category.id) && @category.tasks.exists?(id: @task.id)
-      render :show  
+    if @user.categories.exists?(id: @category.id) && @category.tasks.exists?(id: @task.id) ##&& task_under_user? 
+      render :show
     else
-      redirect_to categories_path
+      redirect_to user_categories_path(current_user.id)
     end
   end
 
   # POST /tasks
   def create
-    @task = @category.tasks.build(task_params)
+    @task = Task.new(task_params)
+    @task.category_id = @category.id
+    @task.user_id = current_user.id
     @task.save
-    redirect_to category_tasks_path(category_id: @category.id)
+    redirect_to user_category_tasks_path(user_id: current_user.id, category_id: @category.id)
   end
 
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to category_tasks_path(category_id: @category.id)
+      redirect_to user_category_tasks_path(user_id: current_user.id, category_id: @category.id)
     else
       render :edit
     end
@@ -40,7 +42,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to category_tasks_path(category_id: @task.category_id)
+    redirect_to user_category_tasks_path(user_id: current_user.id, category_id: params[:category_id])
   end
 
   private
@@ -59,6 +61,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :description, :due_date, :is_done, :category_id)
+      params.require(:task).permit(:name, :description, :user_id, :category_id, :due_date, :is_done)
     end
 end

@@ -1,6 +1,6 @@
 <%= render partial: "shared/header", locals: {title: "Task Details"} %>
 <div class="flex flex-col grow p-4">
-  <%= form_with scope: :task, method: 'put', url: "/categories/#{@category.id}/tasks/#{@task.id}" do |f| %>
+  <%= form_with scope: :task, method: 'put', url: "/users/#{current_user.id}/categories/#{@category.id}/tasks/#{@task.id}" do |f| %>
     
         <div class="field">
           <%= f.label "Task" , class: "font-semibold text-lg"%><br />

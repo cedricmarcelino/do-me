@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to category_tasks_path(category_id: @task.category_id)
+    redirect_to category_tasks_path(category_id: @category.id)
   end
 
   private
@@ -59,6 +59,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :description, :due_date, :is_done, :category_id)
+      params.require(:task).permit(:name, :description, :due_date, :is_done)
     end
 end
