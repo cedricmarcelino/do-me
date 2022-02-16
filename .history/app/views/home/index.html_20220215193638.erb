@@ -1,0 +1,38 @@
+<%if current_user%>
+
+    <%controller.redirect_to user_categories_path(user_id: current_user.id)%>
+
+<% else %>
+    
+    <div class="grow flex flex-col justify-around md:hidden">
+        <div class="app-title text-center text-3xl font-bold text-sky-500">
+            <span>Do.me</span>
+        </div>
+        <div class="action-container flex flex-col text-center">
+            <a class="bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto" href=<%=new_user_registration_path%>>
+                Create an account
+            </a>
+            <span>Already have an account?</span>
+            <span>Tap here to <a class="underline" href=<%=new_user_session_path%>>sign in</a>!</span>
+        </div>
+    </div>
+
+    <div class="hidden md:block font-semibold shadow-md bg-white p-5 sticky top-0">
+        <div>
+            <div class="text-sky-500 text-3xl w-1/2">
+                <i class="fas fa-sticky-note"></i>
+                <span>Do.me</span>
+            </div>
+
+            <div class="w-1/4">
+                <a class="bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto" href=<%=new_user_registration_path%>>
+                    Create an account
+                </a>
+                <a class="underline" href=<%=new_user_session_path%>>
+                    Sign in
+                </a>
+            </div>
+        </div>
+    </div>
+
+<% end %>
