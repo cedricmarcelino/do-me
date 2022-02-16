@@ -17,7 +17,7 @@ class TasksController < ApplicationController
   def due 
     @user = User.find current_user.id
     @user_categories = @user.category_ids
-    @due_tasks = Task.where(category_id: @user_categories, is_done: false, due_date: Date.today)
+    @due_tasks = Task.where(category_id: @user_categories, is_done: false)
   end
 
   # GET /tasks/1

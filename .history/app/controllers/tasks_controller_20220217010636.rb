@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
-  # before_action :set_user, :authenticate_user!, only: [:due] 
   before_action :set_task, :set_category, :set_user, :authenticate_user!, only: [:show, :update, :destroy]
   before_action :set_category, :set_user, :authenticate_user!, only: [:index,:create,:show,:update]
-  # before_action :set_user, :authenticate_user!, only: [:due]
+  before_action :set_user, :authenticate_user!, only: [:due]
 
   # GET /tasks
   def index
@@ -14,11 +13,9 @@ class TasksController < ApplicationController
     end
   end
 
-  def due 
-    @user = User.find current_user.id
-    @user_categories = @user.category_ids
-    @due_tasks = Task.where(category_id: @user_categories, is_done: false, due_date: Date.today)
-  end
+  # def due 
+  #   @tasks = nil
+  # end
 
   # GET /tasks/1
   def show

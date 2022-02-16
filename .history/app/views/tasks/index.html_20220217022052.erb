@@ -11,7 +11,7 @@
   <% @tasks.each do |task|%>
     <div class="flex justify-between border-b border-gray-300 border-solid mb-1 pb-1 text-lg">
       <div>
-        <a class="<%= task.is_done ? "line-through" : ""%> <%=(task.due_date != nil ? ((task.due_date-Date.today).to_i == 0 ? "text-red-600" : "" ) : "")%> <%=(task.due_date != nil ? ((1..2).include?((task.due_date-Date.today).to_i) ? "text-orange-300" : "" ) : "")%>"  href="<%= category_task_path(category_id: @category.id, id: task.id) %>"><%= task.name %></a>
+        <a class=<%= task.is_done ? "line-through " : ""%>  href="<%= category_task_path(category_id: @category.id, id: task.id) %>"><%= task.name %></a>
       </div>
       <div>
         <a class="fas fa-edit" href="<%= category_task_path(category_id: @category.id, id: task.id) %>"></a>
