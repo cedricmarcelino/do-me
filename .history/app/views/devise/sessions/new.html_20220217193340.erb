@@ -1,0 +1,90 @@
+
+
+<div class="h-screen flex flex-col justify-around md:hidden">
+  <div class="flex flex-col">
+    <div class="app-title text-center text-3xl font-bold text-sky-500">
+      <span>Sign in</span>
+    </div>
+    <div class="action-container m-auto">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="text-center py-5">
+          <%= f.submit "Sign in", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto" %>
+        </div>
+          <%= link_to "Back", root_path, class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="hidden md:block font-semibold shadow-md bg-white p-5 sticky top-0">
+    <div class="flex">
+        <div class="text-sky-500 text-3xl w-1/2">
+            <i class="fas fa-sticky-note"></i>
+            <span>Do.me</span>
+        </div>
+
+        <div class="w-1/2 flex justify-end">
+            <a class="bg-white hover:bg-sky-500 hover:text-white hover:border-white font-bold py-2 px-4 rounded-full inline-block text-sky-500 border border-sky-500 mr-3" href=<%=new_user_registration_path%>>
+                Create an account
+            </a>
+            <a class="bg-white hover:bg-sky-500 hover:text-white hover:border-white font-bold py-2 px-4 rounded-full inline-block text-sky-500 border border-sky-500" href=<%=new_user_session_path%>>
+                Sign in
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="hidden md:flex grow flex-col w-9/12 m-auto justify-center">
+  <div class="flex flex-col">
+    <div class="app-title text-center text-3xl font-bold text-sky-500">
+      <span>Log in</span>
+    </div>
+    <div class="action-container m-auto">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="text-center py-5">
+          <%= f.submit "Log in", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto" %>
+        </div>
+          <%= link_to "Back", root_path, class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center" %>
+      <% end %>
+    </div>
+  </div>
+</div>

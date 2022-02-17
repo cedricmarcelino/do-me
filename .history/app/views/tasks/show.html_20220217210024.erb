@@ -1,0 +1,33 @@
+<%= render partial: "shared/header", locals: {title: "Task Details"} %>
+<div class="flex flex-col grow p-4 md:p-10">
+  <%= form_with scope: :task, method: 'put', url: "/categories/#{@category.id}/tasks/#{@task.id}" do |f| %>
+    
+        <div class="field">
+          <%= f.label "Task" , class: "font-semibold text-lg"%><br />
+          <%= f.text_field :name, value: @task.name, class: "bg-slate-50 border-0 w-full p-0" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description , class: "font-semibold text-lg"%><br />
+          <%= f.text_area :description, value: @task.description, class: "bg-slate-50 border border-dashed rounded-lg border-sky-500 w-full p-0", placeholder: "Add a description..." %>
+        </div>
+
+        <div class="field">
+          <%= f.label :due_date , class: "font-semibold text-lg"%><br />
+          <%= f.date_field :due_date, value: @task.due_date , class: "w-full"%>
+        </div>
+
+        <div class="field">
+          <%= f.label "Mark as done?" , class: "font-semibold text-lg"%><br />
+          <%= f.check_box :is_done, value: @task.is_done%>
+        </div>
+
+      <div class="text-center">
+        <%= f.submit "Save Changes", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto mt-2" %>
+      </div>
+
+      <a class= "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center mt-2" href="javascript:history.back()">Discard Changes</a>
+
+  <% end %>
+</div>
+<%= render partial: "shared/footer", locals: {tab: "tasks"} %>

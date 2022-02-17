@@ -1,0 +1,22 @@
+<%= render partial: "shared/header", locals: {title: "Add category"} %>
+
+<div class="flex flex-col grow p-4 md:p-10">
+  <%= form_with scope: :category, class: "contents", url: "/categories" do |f| %>
+    
+        <div class="field">
+          <%= f.label :name , class: "font-semibold text-lg md:text-2xl"%><br />
+          <%= f.text_field :name, class: "w-full" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description , class: "font-semibold text-lg md:text-2xl"%><br />
+          <%= f.text_area :description,  class: "w-full"  %>
+        </div>
+        <div class="text-center">
+          <%= f.submit "Add Category", class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto mt-2" %>
+        </div>
+        <%= link_to "Discard Changes", categories_path, class: "bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-8/12 m-auto block text-center mt-2" %>
+  <% end %>
+</div>
+
+<%= render partial: "shared/footer", locals: {tab: "tasks"} %>
