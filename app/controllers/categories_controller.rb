@@ -1,29 +1,13 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, :authenticate_user!, only: [ :show, :update, :destroy]
-  before_action :set_user,  :authenticate_user!, only: [:create, :index, :new, :show, :update]
-
-  # GET /categories
+  before_action :authenticate_user!
+  before_action :set_category, only: [ :show, :update, :destroy]
+  
   def index
-    @categories = @user.categories
-    render :index
+    @categories = current_user.categories
   end
 
-  # GET /categories/new
-  def new
-    render :new
-  end
-
-  def show
-    if @user.categories.exists?(id: @category.id) #Firm#clients.exists?
-      render :show
-    else
-      redirect_to categories_path
-    end
-  end
-
-  # POST /categories
   def create
-    @category = @user.categories.build(category_params) #Firm#clients.build
+    @category = current_user.categories.build(category_params)
     if @category.save
       redirect_to categories_path
     else
@@ -31,33 +15,21 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categories/1
   def update
-
-    if @user.categories.exists?(id: @category.id) && @category.update(category_params)
+    if @category.update(category_params)
       redirect_to category_tasks_path(category_id: @category.id)
     else
-      render :edit
+      render :show
     end
   end
 
-  # DELETE /categories/1
   def destroy
     @category.destroy
     redirect_to categories_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(current_user.id)
-    end
-    
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
     def category_params
       params.require(:category).permit(:name, :description)
     end
